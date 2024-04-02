@@ -14,7 +14,6 @@
 import json
 import pika
 import os
-import sys
 
 class mqConsumer:
     def __init__(self, binding_key: str, exchange_name: str, queue_name: str) -> None:
@@ -38,6 +37,9 @@ class mqConsumer:
 
         # Establish Channel
         self.channel = self.connection.channel()
+
+
+        self.createQueue(queueName=self.queue_name)
 
         # Create the exchange if not already present
         exchange = self.channel.exchange_declare(exchange=self.exchange_name, exchange_type='topic')
