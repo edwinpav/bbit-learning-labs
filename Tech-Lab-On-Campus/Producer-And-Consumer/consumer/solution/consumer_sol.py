@@ -51,7 +51,7 @@ class mqConsumer:
         )
 
         # Set-up Callback function for receiving messages
-        self.channel.basic_consume(self.queue_name, self.startConsuming, auto_ack=False)
+        self.channel.basic_consume(self.queue_name, self.on_message_callback, auto_ack=False)
         pass
 
     def on_message_callback(
