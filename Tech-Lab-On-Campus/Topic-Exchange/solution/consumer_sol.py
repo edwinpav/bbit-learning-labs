@@ -40,7 +40,7 @@ class mqConsumer:
         self.channel = self.connection.channel()
 
         # Create the exchange if not already present
-        exchange = self.channel.exchange_declare(exchange=self.exchange_name)
+        exchange = self.channel.exchange_declare(exchange=self.exchange_name, exchange_type='topic')
 
         pass
 
@@ -56,10 +56,10 @@ class mqConsumer:
 
     def createQueue(self, queueName: str) -> None:
         # Create Queue if not already present
-        self.channel.queue_declare(queue=self.queue_name)
+        self.channel.queue_declare(queue=queueName)
 
         # Set-up Callback function for receiving messages
-        self.channel.basic_consume(self.queue_name, self.on_message_callback, auto_ack=False)
+        self.channel.basic_consume(queueName, self.on_message_callback, auto_ack=False)
 
         pass
 
