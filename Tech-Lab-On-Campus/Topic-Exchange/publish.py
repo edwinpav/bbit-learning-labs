@@ -17,6 +17,7 @@ import sys
 
 from solution.producer_sol import mqProducer  # pylint: disable=import-error
 
+#test
 
 def main(ticker: str, price: float, sector: str) -> None:
     
